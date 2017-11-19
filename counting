@@ -1,0 +1,64 @@
+package seatwork;
+
+public class wordcount {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String mysentence = "the quick black man is quick 11";
+		char specified = 'a';
+		wordcount("haha haha haha");
+		wordcount(mysentence);
+		vowelcount(mysentence);
+		consonantcount(mysentence);
+		speclettercount(mysentence,specified);
+		numbercount(mysentence);
+
+	}
+	public static void wordcount(String myinput) {
+		int wordcount=0;
+		
+		boolean word = false;
+		int endofLine = myinput.length() - 1;
+		
+		for (int i = 0; i < myinput.length(); i++) {
+			if (Character.isLetter(myinput.charAt(i)) && i != endofLine) {
+				word = true;
+			}
+			else if(!Character.isLetter(myinput.charAt(i)) && word){
+				wordcount++;
+				word = false;
+			}
+			else if(Character.isLetter(myinput.charAt(i)) && i == endofLine) {
+				wordcount++;
+			}
+		}
+		System.out.println("count of word: "+wordcount);
+	}
+	public static void vowelcount(String myinput) {
+		int vowelcount=0;
+		
+		System.out.println("vowel count: "+(myinput.length()-myinput.toLowerCase().replaceAll("a|e|i|o|u|", "").length()));
+	}
+	public static void consonantcount(String myinput) {
+		int consonantcount=0;
+		
+		System.out.println("consonant count: "+(myinput.toLowerCase().replaceAll("a|e|i|o| |u", "").length()));
+	}
+	public static void speclettercount(String myinput, char letter) {
+		int speclettercount=0;
+		
+		char[] listofLetters = myinput.toCharArray();
+		for(int i =0; i <listofLetters.length; i++)
+			if(listofLetters[i]== letter)
+				speclettercount++;
+		System.out.println("count of letter specified: "+speclettercount);
+	}
+	public static void numbercount(String myinput) {
+		int numbercount=0;
+		for(int i=0; i < myinput.length();i++) {
+			if(Character.isDigit(myinput.charAt(i))) {
+				numbercount++;
+			}
+		}
+	}
+}
